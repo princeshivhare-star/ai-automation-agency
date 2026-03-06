@@ -408,6 +408,35 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:60px;tex
 /* Spam shield overlay on chat (cooldown) */
 .chat-cooldown{opacity:.4;pointer-events:none;}
 
+
+/* ── VIDEO SHOWCASE SECTION ── */
+.video-section{background:var(--bg2);padding:100px 60px;}
+.video-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:1200px;margin:60px auto 0;}
+.video-card{background:var(--card);border:1px solid var(--border);border-radius:20px;overflow:hidden;transition:all .3s;position:relative;}
+.video-card:hover{transform:translateY(-6px);border-color:rgba(0,212,255,0.3);box-shadow:0 20px 60px rgba(0,0,0,0.4);}
+.video-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--accent2));opacity:0;transition:opacity .3s;z-index:1;}
+.video-card:hover::before{opacity:1;}
+.video-wrap{position:relative;width:100%;padding-top:56.25%;background:#000;overflow:hidden;}
+.video-wrap iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:none;}
+.video-thumb{position:absolute;top:0;left:0;width:100%;height:100%;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:opacity .3s;}
+.video-thumb img{width:100%;height:100%;object-fit:cover;}
+.video-thumb .play-btn{position:absolute;width:60px;height:60px;border-radius:50%;background:rgba(0,212,255,0.9);display:flex;align-items:center;justify-content:center;font-size:1.4rem;box-shadow:0 0 30px rgba(0,212,255,0.4);transition:transform .2s;}
+.video-thumb:hover .play-btn{transform:scale(1.1);}
+.video-thumb.hidden{opacity:0;pointer-events:none;}
+.video-info{padding:18px 20px;}
+.video-tag{display:inline-block;font-size:.68rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;padding:3px 10px;border-radius:100px;margin-bottom:10px;}
+.video-title{font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;color:#fff;margin-bottom:6px;line-height:1.3;}
+.video-desc{font-size:.8rem;color:var(--muted);line-height:1.5;}
+.video-feat-row{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap;}
+.vfeat{font-size:.7rem;background:rgba(255,255,255,0.04);border:1px solid var(--border);color:var(--muted);padding:3px 8px;border-radius:20px;}
+@media(max-width:1024px){.video-grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:768px){
+  .video-section{padding:60px 16px;}
+  .video-grid{grid-template-columns:1fr;gap:16px;margin-top:40px;}
+  .video-info{padding:14px 16px;}
+  .video-title{font-size:.95rem;}
+}
+
 </style>
 <!-- 
   NETLIFY HEADERS (create a _headers file in your deploy with this content):
@@ -429,6 +458,7 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:60px;tex
   <div class="logo">Nexa<span>Flow</span> AI</div>
   <ul class="nav-links">
     <li><a href="#tools">Services</a></li>
+    <li><a href="#demos">Demos</a></li>
     <li><a href="#process">Process</a></li>
     <li><a href="#pricing">Pricing</a></li>
     <li><a href="#contact">Contact</a></li>
@@ -443,6 +473,7 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:60px;tex
 <div class="mobile-menu" id="mobileMenu">
   <button class="mobile-menu-close" onclick="toggleMobileMenu()">✕</button>
   <a href="#tools"   onclick="toggleMobileMenu()">Services</a>
+  <a href="#demos" onclick="toggleMobileMenu()">Demos</a>
   <a href="#process" onclick="toggleMobileMenu()">Process</a>
   <a href="#pricing" onclick="toggleMobileMenu()">Pricing</a>
   <a href="#contact" onclick="toggleMobileMenu()">Contact</a>
@@ -1366,6 +1397,155 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:60px;tex
   </div>
 </section>
 
+<!-- VIDEO SHOWCASE -->
+<section class="video-section" id="demos">
+  <div style="text-align:center;" class="reveal">
+    <div class="section-label">Live Demos</div>
+    <div class="section-title">See Our AI Tools<br>in Action 🎬</div>
+    <p class="section-sub" style="margin:12px auto 0;">Watch real demonstrations of the exact tools we build — same quality, customised for your business.</p>
+  </div>
+  <div class="video-grid">
+    
+    <div class="video-card reveal">
+      <div class="video-wrap">
+        <div class="video-thumb" id="thumb-L_Guz73e6fw" onclick="playVideo('L_Guz73e6fw')">
+          <img src="https://img.youtube.com/vi/L_Guz73e6fw/maxresdefault.jpg"
+               onerror="this.src='https://img.youtube.com/vi/L_Guz73e6fw/hqdefault.jpg'"
+               alt="WhatsApp AI Chatbot — Live Demo" loading="lazy">
+          <div class="play-btn">▶</div>
+        </div>
+        <iframe id="iframe-L_Guz73e6fw" style="display:none;"
+          src=""
+          data-src="https://www.youtube.com/embed/L_Guz73e6fw?autoplay=1&rel=0&modestbranding=1"
+          allow="autoplay; encrypted-media" allowfullscreen>
+        </iframe>
+      </div>
+      <div class="video-info">
+        <span class="video-tag" style="background:rgba(16,185,129,0.1);color:#34d399;border:1px solid rgba(16,185,129,0.2);">WhatsApp AI</span>
+        <div class="video-title">WhatsApp AI Chatbot — Live Demo</div>
+        <div class="video-desc">See how our WhatsApp bot handles 1000s of customer queries, orders and lead capture automatically 24/7.</div>
+        <div class="video-feat-row"><span class="vfeat">Auto Reply</span><span class="vfeat">Order Tracking</span><span class="vfeat">Lead Capture</span></div>
+      </div>
+    </div>
+
+    <div class="video-card reveal">
+      <div class="video-wrap">
+        <div class="video-thumb" id="thumb-NG5gZMuXFx4" onclick="playVideo('NG5gZMuXFx4')">
+          <img src="https://img.youtube.com/vi/NG5gZMuXFx4/maxresdefault.jpg"
+               onerror="this.src='https://img.youtube.com/vi/NG5gZMuXFx4/hqdefault.jpg'"
+               alt="AI Voice Calling Agent — Real Call Demo" loading="lazy">
+          <div class="play-btn">▶</div>
+        </div>
+        <iframe id="iframe-NG5gZMuXFx4" style="display:none;"
+          src=""
+          data-src="https://www.youtube.com/embed/NG5gZMuXFx4?autoplay=1&rel=0&modestbranding=1"
+          allow="autoplay; encrypted-media" allowfullscreen>
+        </iframe>
+      </div>
+      <div class="video-info">
+        <span class="video-tag" style="background:rgba(0,212,255,0.1);color:var(--accent);border:1px solid rgba(0,212,255,0.2);">AI Calling</span>
+        <div class="video-title">AI Voice Calling Agent — Real Call Demo</div>
+        <div class="video-desc">Watch our human-like AI voice agent book appointments, qualify leads and handle inbound calls live.</div>
+        <div class="video-feat-row"><span class="vfeat">Human Voice</span><span class="vfeat">Books Appointments</span><span class="vfeat">Lead Qualify</span></div>
+      </div>
+    </div>
+
+    <div class="video-card reveal">
+      <div class="video-wrap">
+        <div class="video-thumb" id="thumb-HCPh9QzNMQo" onclick="playVideo('HCPh9QzNMQo')">
+          <img src="https://img.youtube.com/vi/HCPh9QzNMQo/maxresdefault.jpg"
+               onerror="this.src='https://img.youtube.com/vi/HCPh9QzNMQo/hqdefault.jpg'"
+               alt="Instagram Auto DM Bot in Action" loading="lazy">
+          <div class="play-btn">▶</div>
+        </div>
+        <iframe id="iframe-HCPh9QzNMQo" style="display:none;"
+          src=""
+          data-src="https://www.youtube.com/embed/HCPh9QzNMQo?autoplay=1&rel=0&modestbranding=1"
+          allow="autoplay; encrypted-media" allowfullscreen>
+        </iframe>
+      </div>
+      <div class="video-info">
+        <span class="video-tag" style="background:rgba(236,72,153,0.1);color:#f472b6;border:1px solid rgba(236,72,153,0.2);">Instagram Bot</span>
+        <div class="video-title">Instagram Auto DM Bot in Action</div>
+        <div class="video-desc">Auto-reply to comments and DMs on Instagram, send offers and convert followers to paying customers.</div>
+        <div class="video-feat-row"><span class="vfeat">Comment Trigger</span><span class="vfeat">Auto DM</span><span class="vfeat">Sales Funnel</span></div>
+      </div>
+    </div>
+
+    <div class="video-card reveal">
+      <div class="video-wrap">
+        <div class="video-thumb" id="thumb-RoRdBdXFSRY" onclick="playVideo('RoRdBdXFSRY')">
+          <img src="https://img.youtube.com/vi/RoRdBdXFSRY/maxresdefault.jpg"
+               onerror="this.src='https://img.youtube.com/vi/RoRdBdXFSRY/hqdefault.jpg'"
+               alt="Facebook & Instagram Ads — Full Campaign" loading="lazy">
+          <div class="play-btn">▶</div>
+        </div>
+        <iframe id="iframe-RoRdBdXFSRY" style="display:none;"
+          src=""
+          data-src="https://www.youtube.com/embed/RoRdBdXFSRY?autoplay=1&rel=0&modestbranding=1"
+          allow="autoplay; encrypted-media" allowfullscreen>
+        </iframe>
+      </div>
+      <div class="video-info">
+        <span class="video-tag" style="background:rgba(0,212,255,0.1);color:var(--accent);border:1px solid rgba(0,212,255,0.2);">Meta Ads</span>
+        <div class="video-title">Facebook & Instagram Ads — Full Campaign</div>
+        <div class="video-desc">Full Meta Ads campaign walkthrough — targeting, creatives, A/B testing and scaling for real ROI.</div>
+        <div class="video-feat-row"><span class="vfeat">Audience Targeting</span><span class="vfeat">A/B Testing</span><span class="vfeat">ROAS Tracking</span></div>
+      </div>
+    </div>
+
+    <div class="video-card reveal">
+      <div class="video-wrap">
+        <div class="video-thumb" id="thumb-dQw4w9WgXcQ" onclick="playVideo('dQw4w9WgXcQ')">
+          <img src="https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg"
+               onerror="this.src='https://img.youtube.com/vi/dQw4w9WgXcQ/hqdefault.jpg'"
+               alt="Business Automation Workflow Demo" loading="lazy">
+          <div class="play-btn">▶</div>
+        </div>
+        <iframe id="iframe-dQw4w9WgXcQ" style="display:none;"
+          src=""
+          data-src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&rel=0&modestbranding=1"
+          allow="autoplay; encrypted-media" allowfullscreen>
+        </iframe>
+      </div>
+      <div class="video-info">
+        <span class="video-tag" style="background:rgba(124,58,237,0.1);color:#a78bfa;border:1px solid rgba(124,58,237,0.2);">AI Automation</span>
+        <div class="video-title">Business Automation Workflow Demo</div>
+        <div class="video-desc">Complete end-to-end AI automation — from lead capture to follow-up to payment, fully on autopilot.</div>
+        <div class="video-feat-row"><span class="vfeat">Multi-Step Flow</span><span class="vfeat">CRM Sync</span><span class="vfeat">Auto Follow-up</span></div>
+      </div>
+    </div>
+
+    <div class="video-card reveal">
+      <div class="video-wrap">
+        <div class="video-thumb" id="thumb-NsxSMBXFEjM" onclick="playVideo('NsxSMBXFEjM')">
+          <img src="https://img.youtube.com/vi/NsxSMBXFEjM/maxresdefault.jpg"
+               onerror="this.src='https://img.youtube.com/vi/NsxSMBXFEjM/hqdefault.jpg'"
+               alt="AI Social Media Manager — 30 Days Content" loading="lazy">
+          <div class="play-btn">▶</div>
+        </div>
+        <iframe id="iframe-NsxSMBXFEjM" style="display:none;"
+          src=""
+          data-src="https://www.youtube.com/embed/NsxSMBXFEjM?autoplay=1&rel=0&modestbranding=1"
+          allow="autoplay; encrypted-media" allowfullscreen>
+        </iframe>
+      </div>
+      <div class="video-info">
+        <span class="video-tag" style="background:rgba(251,146,60,0.1);color:#fb923c;border:1px solid rgba(251,146,60,0.2);">Social Media AI</span>
+        <div class="video-title">AI Social Media Manager — 30 Days Content</div>
+        <div class="video-desc">Watch AI generate a full 30-day content calendar, captions, hashtags and schedule posts across platforms.</div>
+        <div class="video-feat-row"><span class="vfeat">30-Day Calendar</span><span class="vfeat">Auto Schedule</span><span class="vfeat">All Platforms</span></div>
+      </div>
+    </div>
+  </div>
+  <div style="text-align:center;margin-top:48px;" class="reveal">
+    <p style="color:var(--muted);font-size:.88rem;margin-bottom:16px;">Want to see a demo built specifically for <strong style="color:#fff;">your business</strong>?</p>
+    <a href="https://wa.me/919752383672?text=Hi%20NexaFlow%20AI!%20I%27d%20like%20to%20see%20a%20custom%20demo%20for%20my%20business%20%F0%9F%9A%80" target="_blank" rel="noopener noreferrer">
+      <button class="btn-primary" style="font-size:.95rem;padding:13px 32px;">💬 Request a Custom Demo →</button>
+    </a>
+  </div>
+</section>
+
 <!-- PROCESS -->
 <section class="process-section" id="process">
   <div style="max-width:1100px;margin:0 auto;">
@@ -1998,6 +2178,17 @@ window.addEventListener('scroll', ()=>{
   const menu = document.getElementById('mobileMenu');
   if(menu && menu.classList.contains('open')) toggleMobileMenu();
 }, {passive:true});
+
+
+// ── Video Player ──
+function playVideo(ytId){
+  const thumb  = document.getElementById('thumb-'+ytId);
+  const iframe = document.getElementById('iframe-'+ytId);
+  if(!iframe) return;
+  iframe.src = iframe.dataset.src;
+  iframe.style.display = 'block';
+  thumb.classList.add('hidden');
+}
 
 </script>
 
