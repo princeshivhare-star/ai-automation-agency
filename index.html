@@ -437,6 +437,20 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:60px;tex
   .video-title{font-size:.95rem;}
 }
 
+
+/* ── DEMO VIDEO ANIMATIONS ── */
+.demo-play-overlay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(3,7,18,0.55);transition:opacity .3s;backdrop-filter:blur(2px);}
+.demo-play-overlay.hidden{opacity:0;pointer-events:none;}
+.play-btn-big{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;font-family:'Syne',sans-serif;font-weight:700;font-size:.95rem;padding:12px 24px;border-radius:50px;box-shadow:0 0 30px rgba(0,212,255,0.35);cursor:pointer;transition:transform .2s;}
+.play-btn-big:hover{transform:scale(1.07);}
+
+
+/* ── DEMO VIDEO ANIMATIONS ── */
+.demo-play-overlay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(3,7,18,0.55);transition:opacity .3s;backdrop-filter:blur(2px);}
+.demo-play-overlay.hidden{opacity:0;pointer-events:none;}
+.play-btn-big{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;font-family:'Syne',sans-serif;font-weight:700;font-size:.95rem;padding:12px 24px;border-radius:50px;box-shadow:0 0 30px rgba(0,212,255,0.35);cursor:pointer;transition:transform .2s;}
+.play-btn-big:hover{transform:scale(1.07);}
+
 </style>
 <!-- 
   NETLIFY HEADERS (create a _headers file in your deploy with this content):
@@ -447,6 +461,33 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:60px;tex
     Permissions-Policy: camera=(), microphone=(), geolocation=()
     X-XSS-Protection: 1; mode=block
 -->
+
+<!-- ── VISITOR ANALYTICS ── -->
+<!-- Google Analytics 4 — replace G-XXXXXXXXXX with your GA4 ID -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-XXXXXXXXXX', {
+    page_title: document.title,
+    send_page_view: true
+  });
+  // Track WhatsApp clicks
+  document.addEventListener('click', function(e){
+    const a = e.target.closest('a');
+    if(a && a.href && a.href.includes('wa.me')){
+      gtag('event','whatsapp_click',{event_category:'CTA',event_label:a.href});
+    }
+    if(a && a.href && a.href.includes('paypal')){
+      gtag('event','paypal_click',{event_category:'Payment',event_label:'PayPal'});
+    }
+    if(a && a.href && a.href.includes('upi')){
+      gtag('event','upi_click',{event_category:'Payment',event_label:'UPI'});
+    }
+  });
+</script>
+
 </head>
 <body>
 
@@ -1402,144 +1443,99 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:60px;tex
   <div style="text-align:center;" class="reveal">
     <div class="section-label">Live Demos</div>
     <div class="section-title">See Our AI Tools<br>in Action 🎬</div>
-    <p class="section-sub" style="margin:12px auto 0;">Watch real demonstrations of the exact tools we build — same quality, customised for your business.</p>
+    <p class="section-sub" style="margin:12px auto 0;">Real animated demos of the exact tools we build — customised for your business.</p>
   </div>
+
   <div class="video-grid">
-    
+
+    <!-- DEMO 1: WhatsApp Chatbot -->
     <div class="video-card reveal">
-      <div class="video-wrap">
-        <div class="video-thumb" id="thumb-L_Guz73e6fw" onclick="playVideo('L_Guz73e6fw')">
-          <img src="https://img.youtube.com/vi/L_Guz73e6fw/maxresdefault.jpg"
-               onerror="this.src='https://img.youtube.com/vi/L_Guz73e6fw/hqdefault.jpg'"
-               alt="WhatsApp AI Chatbot — Live Demo" loading="lazy">
-          <div class="play-btn">▶</div>
-        </div>
-        <iframe id="iframe-L_Guz73e6fw" style="display:none;"
-          src=""
-          data-src="https://www.youtube.com/embed/L_Guz73e6fw?autoplay=1&rel=0&modestbranding=1"
-          allow="autoplay; encrypted-media" allowfullscreen>
-        </iframe>
+      <div class="video-wrap" style="cursor:pointer;" onclick="startDemo('wa',this)">
+        <canvas id="demo-wa" width="480" height="270" style="width:100%;height:100%;display:block;"></canvas>
+        <div class="demo-play-overlay" id="overlay-wa"><div class="play-btn-big">▶ Play Demo</div></div>
       </div>
       <div class="video-info">
         <span class="video-tag" style="background:rgba(16,185,129,0.1);color:#34d399;border:1px solid rgba(16,185,129,0.2);">WhatsApp AI</span>
         <div class="video-title">WhatsApp AI Chatbot — Live Demo</div>
-        <div class="video-desc">See how our WhatsApp bot handles 1000s of customer queries, orders and lead capture automatically 24/7.</div>
+        <div class="video-desc">Watch the bot auto-reply to customer queries, capture leads and process orders 24/7.</div>
         <div class="video-feat-row"><span class="vfeat">Auto Reply</span><span class="vfeat">Order Tracking</span><span class="vfeat">Lead Capture</span></div>
       </div>
     </div>
 
+    <!-- DEMO 2: AI Calling Agent -->
     <div class="video-card reveal">
-      <div class="video-wrap">
-        <div class="video-thumb" id="thumb-NG5gZMuXFx4" onclick="playVideo('NG5gZMuXFx4')">
-          <img src="https://img.youtube.com/vi/NG5gZMuXFx4/maxresdefault.jpg"
-               onerror="this.src='https://img.youtube.com/vi/NG5gZMuXFx4/hqdefault.jpg'"
-               alt="AI Voice Calling Agent — Real Call Demo" loading="lazy">
-          <div class="play-btn">▶</div>
-        </div>
-        <iframe id="iframe-NG5gZMuXFx4" style="display:none;"
-          src=""
-          data-src="https://www.youtube.com/embed/NG5gZMuXFx4?autoplay=1&rel=0&modestbranding=1"
-          allow="autoplay; encrypted-media" allowfullscreen>
-        </iframe>
+      <div class="video-wrap" style="cursor:pointer;" onclick="startDemo('call',this)">
+        <canvas id="demo-call" width="480" height="270" style="width:100%;height:100%;display:block;"></canvas>
+        <div class="demo-play-overlay" id="overlay-call"><div class="play-btn-big">▶ Play Demo</div></div>
       </div>
       <div class="video-info">
         <span class="video-tag" style="background:rgba(0,212,255,0.1);color:var(--accent);border:1px solid rgba(0,212,255,0.2);">AI Calling</span>
-        <div class="video-title">AI Voice Calling Agent — Real Call Demo</div>
-        <div class="video-desc">Watch our human-like AI voice agent book appointments, qualify leads and handle inbound calls live.</div>
+        <div class="video-title">AI Voice Calling Agent — Real Call</div>
+        <div class="video-desc">AI makes & receives calls, books appointments and qualifies leads with a human-like voice.</div>
         <div class="video-feat-row"><span class="vfeat">Human Voice</span><span class="vfeat">Books Appointments</span><span class="vfeat">Lead Qualify</span></div>
       </div>
     </div>
 
+    <!-- DEMO 3: Instagram DM Bot -->
     <div class="video-card reveal">
-      <div class="video-wrap">
-        <div class="video-thumb" id="thumb-HCPh9QzNMQo" onclick="playVideo('HCPh9QzNMQo')">
-          <img src="https://img.youtube.com/vi/HCPh9QzNMQo/maxresdefault.jpg"
-               onerror="this.src='https://img.youtube.com/vi/HCPh9QzNMQo/hqdefault.jpg'"
-               alt="Instagram Auto DM Bot in Action" loading="lazy">
-          <div class="play-btn">▶</div>
-        </div>
-        <iframe id="iframe-HCPh9QzNMQo" style="display:none;"
-          src=""
-          data-src="https://www.youtube.com/embed/HCPh9QzNMQo?autoplay=1&rel=0&modestbranding=1"
-          allow="autoplay; encrypted-media" allowfullscreen>
-        </iframe>
+      <div class="video-wrap" style="cursor:pointer;" onclick="startDemo('insta',this)">
+        <canvas id="demo-insta" width="480" height="270" style="width:100%;height:100%;display:block;"></canvas>
+        <div class="demo-play-overlay" id="overlay-insta"><div class="play-btn-big">▶ Play Demo</div></div>
       </div>
       <div class="video-info">
         <span class="video-tag" style="background:rgba(236,72,153,0.1);color:#f472b6;border:1px solid rgba(236,72,153,0.2);">Instagram Bot</span>
         <div class="video-title">Instagram Auto DM Bot in Action</div>
-        <div class="video-desc">Auto-reply to comments and DMs on Instagram, send offers and convert followers to paying customers.</div>
+        <div class="video-desc">Comment triggers auto DM — sends offers, captures leads and converts followers to buyers.</div>
         <div class="video-feat-row"><span class="vfeat">Comment Trigger</span><span class="vfeat">Auto DM</span><span class="vfeat">Sales Funnel</span></div>
       </div>
     </div>
 
+    <!-- DEMO 4: Meta Ads -->
     <div class="video-card reveal">
-      <div class="video-wrap">
-        <div class="video-thumb" id="thumb-RoRdBdXFSRY" onclick="playVideo('RoRdBdXFSRY')">
-          <img src="https://img.youtube.com/vi/RoRdBdXFSRY/maxresdefault.jpg"
-               onerror="this.src='https://img.youtube.com/vi/RoRdBdXFSRY/hqdefault.jpg'"
-               alt="Facebook & Instagram Ads — Full Campaign" loading="lazy">
-          <div class="play-btn">▶</div>
-        </div>
-        <iframe id="iframe-RoRdBdXFSRY" style="display:none;"
-          src=""
-          data-src="https://www.youtube.com/embed/RoRdBdXFSRY?autoplay=1&rel=0&modestbranding=1"
-          allow="autoplay; encrypted-media" allowfullscreen>
-        </iframe>
+      <div class="video-wrap" style="cursor:pointer;" onclick="startDemo('ads',this)">
+        <canvas id="demo-ads" width="480" height="270" style="width:100%;height:100%;display:block;"></canvas>
+        <div class="demo-play-overlay" id="overlay-ads"><div class="play-btn-big">▶ Play Demo</div></div>
       </div>
       <div class="video-info">
-        <span class="video-tag" style="background:rgba(0,212,255,0.1);color:var(--accent);border:1px solid rgba(0,212,255,0.2);">Meta Ads</span>
-        <div class="video-title">Facebook & Instagram Ads — Full Campaign</div>
-        <div class="video-desc">Full Meta Ads campaign walkthrough — targeting, creatives, A/B testing and scaling for real ROI.</div>
+        <span class="video-tag" style="background:rgba(24,119,242,0.1);color:#60a5fa;border:1px solid rgba(24,119,242,0.2);">Meta Ads</span>
+        <div class="video-title">Facebook & Instagram Ads AI Manager</div>
+        <div class="video-desc">AI creates, launches and optimises Meta ad campaigns for maximum ROAS automatically.</div>
         <div class="video-feat-row"><span class="vfeat">Audience Targeting</span><span class="vfeat">A/B Testing</span><span class="vfeat">ROAS Tracking</span></div>
       </div>
     </div>
 
+    <!-- DEMO 5: Lead Gen -->
     <div class="video-card reveal">
-      <div class="video-wrap">
-        <div class="video-thumb" id="thumb-dQw4w9WgXcQ" onclick="playVideo('dQw4w9WgXcQ')">
-          <img src="https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg"
-               onerror="this.src='https://img.youtube.com/vi/dQw4w9WgXcQ/hqdefault.jpg'"
-               alt="Business Automation Workflow Demo" loading="lazy">
-          <div class="play-btn">▶</div>
-        </div>
-        <iframe id="iframe-dQw4w9WgXcQ" style="display:none;"
-          src=""
-          data-src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&rel=0&modestbranding=1"
-          allow="autoplay; encrypted-media" allowfullscreen>
-        </iframe>
+      <div class="video-wrap" style="cursor:pointer;" onclick="startDemo('lead',this)">
+        <canvas id="demo-lead" width="480" height="270" style="width:100%;height:100%;display:block;"></canvas>
+        <div class="demo-play-overlay" id="overlay-lead"><div class="play-btn-big">▶ Play Demo</div></div>
       </div>
       <div class="video-info">
-        <span class="video-tag" style="background:rgba(124,58,237,0.1);color:#a78bfa;border:1px solid rgba(124,58,237,0.2);">AI Automation</span>
-        <div class="video-title">Business Automation Workflow Demo</div>
-        <div class="video-desc">Complete end-to-end AI automation — from lead capture to follow-up to payment, fully on autopilot.</div>
-        <div class="video-feat-row"><span class="vfeat">Multi-Step Flow</span><span class="vfeat">CRM Sync</span><span class="vfeat">Auto Follow-up</span></div>
+        <span class="video-tag" style="background:rgba(124,58,237,0.1);color:#a78bfa;border:1px solid rgba(124,58,237,0.2);">Lead Gen AI</span>
+        <div class="video-title">AI Lead Generation — 500 Leads/Day</div>
+        <div class="video-desc">Watch AI scrape, qualify and auto-outreach to 500+ targeted leads every single day.</div>
+        <div class="video-feat-row"><span class="vfeat">Auto Scrape</span><span class="vfeat">Qualify AI</span><span class="vfeat">500/Day</span></div>
       </div>
     </div>
 
+    <!-- DEMO 6: Full Automation -->
     <div class="video-card reveal">
-      <div class="video-wrap">
-        <div class="video-thumb" id="thumb-NsxSMBXFEjM" onclick="playVideo('NsxSMBXFEjM')">
-          <img src="https://img.youtube.com/vi/NsxSMBXFEjM/maxresdefault.jpg"
-               onerror="this.src='https://img.youtube.com/vi/NsxSMBXFEjM/hqdefault.jpg'"
-               alt="AI Social Media Manager — 30 Days Content" loading="lazy">
-          <div class="play-btn">▶</div>
-        </div>
-        <iframe id="iframe-NsxSMBXFEjM" style="display:none;"
-          src=""
-          data-src="https://www.youtube.com/embed/NsxSMBXFEjM?autoplay=1&rel=0&modestbranding=1"
-          allow="autoplay; encrypted-media" allowfullscreen>
-        </iframe>
+      <div class="video-wrap" style="cursor:pointer;" onclick="startDemo('auto',this)">
+        <canvas id="demo-auto" width="480" height="270" style="width:100%;height:100%;display:block;"></canvas>
+        <div class="demo-play-overlay" id="overlay-auto"><div class="play-btn-big">▶ Play Demo</div></div>
       </div>
       <div class="video-info">
-        <span class="video-tag" style="background:rgba(251,146,60,0.1);color:#fb923c;border:1px solid rgba(251,146,60,0.2);">Social Media AI</span>
-        <div class="video-title">AI Social Media Manager — 30 Days Content</div>
-        <div class="video-desc">Watch AI generate a full 30-day content calendar, captions, hashtags and schedule posts across platforms.</div>
-        <div class="video-feat-row"><span class="vfeat">30-Day Calendar</span><span class="vfeat">Auto Schedule</span><span class="vfeat">All Platforms</span></div>
+        <span class="video-tag" style="background:rgba(251,146,60,0.1);color:#fb923c;border:1px solid rgba(251,146,60,0.2);">Full Automation</span>
+        <div class="video-title">Complete Business Automation Flow</div>
+        <div class="video-desc">End-to-end automation — lead capture → follow-up → payment → WhatsApp notify. All autopilot.</div>
+        <div class="video-feat-row"><span class="vfeat">Multi-Step</span><span class="vfeat">CRM Sync</span><span class="vfeat">Auto Follow-up</span></div>
       </div>
     </div>
+
   </div>
+
   <div style="text-align:center;margin-top:48px;" class="reveal">
-    <p style="color:var(--muted);font-size:.88rem;margin-bottom:16px;">Want to see a demo built specifically for <strong style="color:#fff;">your business</strong>?</p>
+    <p style="color:var(--muted);font-size:.88rem;margin-bottom:16px;">Want a live demo built for <strong style="color:#fff;">your business</strong>?</p>
     <a href="https://wa.me/919752383672?text=Hi%20NexaFlow%20AI!%20I%27d%20like%20to%20see%20a%20custom%20demo%20for%20my%20business%20%F0%9F%9A%80" target="_blank" rel="noopener noreferrer">
       <button class="btn-primary" style="font-size:.95rem;padding:13px 32px;">💬 Request a Custom Demo →</button>
     </a>
@@ -2189,6 +2185,578 @@ function playVideo(ytId){
   iframe.style.display = 'block';
   thumb.classList.add('hidden');
 }
+
+
+
+// ═══════════════════════════════════════════
+//  AI DEMO CANVAS ANIMATIONS
+// ═══════════════════════════════════════════
+
+const demoTimers = {};
+
+function startDemo(id, wrap) {
+  const overlay = document.getElementById('overlay-' + id);
+  if(overlay) overlay.classList.add('hidden');
+  const canvas  = document.getElementById('demo-' + id);
+  if(!canvas) return;
+  if(demoTimers[id]) { clearInterval(demoTimers[id]); delete demoTimers[id]; }
+  const demos = { wa: demoWA, call: demoCall, insta: demoInsta, ads: demoAds, lead: demoLead, auto: demoAuto };
+  if(demos[id]) demos[id](canvas);
+}
+
+// ── HELPERS ──
+function roundRect(ctx, x, y, w, h, r, fill, stroke) {
+  ctx.beginPath();
+  ctx.moveTo(x+r, y);
+  ctx.lineTo(x+w-r, y); ctx.quadraticCurveTo(x+w,y,x+w,y+r);
+  ctx.lineTo(x+w,y+h-r); ctx.quadraticCurveTo(x+w,y+h,x+w-r,y+h);
+  ctx.lineTo(x+r,y+h); ctx.quadraticCurveTo(x,y+h,x,y+h-r);
+  ctx.lineTo(x,y+r); ctx.quadraticCurveTo(x,y,x+r,y);
+  ctx.closePath();
+  if(fill){ ctx.fillStyle=fill; ctx.fill(); }
+  if(stroke){ ctx.strokeStyle=stroke; ctx.lineWidth=1.5; ctx.stroke(); }
+}
+function drawBg(ctx, w, h, c1, c2) {
+  const g = ctx.createLinearGradient(0,0,w,h);
+  g.addColorStop(0, c1); g.addColorStop(1, c2);
+  ctx.fillStyle=g; ctx.fillRect(0,0,w,h);
+}
+function drawGrid(ctx, w, h, color) {
+  ctx.strokeStyle=color; ctx.lineWidth=0.5;
+  for(let x=0;x<w;x+=40){ ctx.beginPath(); ctx.moveTo(x,0); ctx.lineTo(x,h); ctx.stroke(); }
+  for(let y=0;y<h;y+=40){ ctx.beginPath(); ctx.moveTo(0,y); ctx.lineTo(w,y); ctx.stroke(); }
+}
+function typingDots(ctx, x, y, t, color) {
+  for(let i=0;i<3;i++){
+    const bounce = Math.sin(t*3 + i*1.2)*3;
+    ctx.beginPath(); ctx.arc(x+i*10, y+bounce, 3, 0, Math.PI*2);
+    ctx.fillStyle=color; ctx.fill();
+  }
+}
+
+// ── DEMO 1: WhatsApp Chatbot ──
+function demoWA(canvas) {
+  const ctx = canvas.getContext('2d');
+  const W=480, H=270;
+  let t=0;
+  const msgs = [
+    {txt:'Hi! How can I help you? 👋', side:'bot', color:'#25D366'},
+    {txt:'I want to order product #42', side:'user', color:'#fff'},
+    {txt:'✅ Order placed! ID: WA-2024', side:'bot', color:'#25D366'},
+    {txt:'What is my delivery date?', side:'user', color:'#fff'},
+    {txt:'📦 Arrives Tomorrow by 6PM!', side:'bot', color:'#25D366'},
+    {txt:'Can I get a discount? 🙏', side:'user', color:'#fff'},
+    {txt:'🎁 Here is 10% OFF: NEXA10', side:'bot', color:'#25D366'},
+  ];
+  let visibleMsgs = 0;
+  const msgInterval = 60; // frames per message
+
+  demoTimers['wa'] = setInterval(()=>{
+    ctx.clearRect(0,0,W,H);
+    drawBg(ctx, W, H, '#0a1f0a', '#0d1a0d');
+    drawGrid(ctx, W, H, 'rgba(37,211,102,0.04)');
+
+    // Header bar
+    roundRect(ctx, 0, 0, W, 44, 0, 'rgba(37,211,102,0.12)', null);
+    ctx.fillStyle='#25D366'; ctx.font='bold 13px sans-serif'; ctx.textAlign='left';
+    ctx.fillText('● NexaFlow AI — WhatsApp Bot', 14, 27);
+    ctx.fillStyle='rgba(255,255,255,0.4)'; ctx.font='10px sans-serif'; ctx.textAlign='right';
+    ctx.fillText('Online • 24/7 Active', W-14, 27);
+
+    // Messages
+    let yPos = 56;
+    const show = Math.min(visibleMsgs, msgs.length);
+    for(let i=0;i<show;i++){
+      const m = msgs[i];
+      const isBot = m.side==='bot';
+      const bw = Math.min(ctx.measureText(m.txt).width + 24, W*0.65);
+      const bx = isBot ? 14 : W - bw - 14;
+      const by = yPos;
+      const bh = 26;
+      roundRect(ctx, bx, by, bw, bh, 8,
+        isBot ? 'rgba(37,211,102,0.18)' : 'rgba(255,255,255,0.08)',
+        isBot ? 'rgba(37,211,102,0.4)' : 'rgba(255,255,255,0.15)');
+      ctx.fillStyle = isBot ? '#25D366' : '#fff';
+      ctx.font = '11px sans-serif'; ctx.textAlign = isBot ? 'left' : 'right';
+      ctx.fillText(m.txt, isBot ? bx+12 : bx+bw-12, by+17);
+      yPos += 34;
+    }
+
+    // Typing indicator
+    if(visibleMsgs < msgs.length) {
+      const frameInCycle = t % msgInterval;
+      if(frameInCycle > msgInterval*0.5) typingDots(ctx, 24, yPos+8, t*0.1, '#25D366');
+    }
+
+    // Stats bar bottom
+    roundRect(ctx, 0, H-34, W, 34, 0, 'rgba(37,211,102,0.07)', null);
+    const stats = ['1,247 msgs today','98% auto-resolved','0 missed queries'];
+    stats.forEach((s,i)=>{
+      ctx.fillStyle='#25D366'; ctx.font='bold 10px sans-serif'; ctx.textAlign='center';
+      ctx.fillText(s, 80+i*160, H-14);
+    });
+
+    if(t % msgInterval === msgInterval-1 && visibleMsgs < msgs.length) visibleMsgs++;
+    if(visibleMsgs >= msgs.length && t % (msgInterval*10) === 0) { visibleMsgs=0; t=0; }
+    t++;
+  }, 40);
+}
+
+// ── DEMO 2: AI Calling Agent ──
+function demoCall(canvas) {
+  const ctx = canvas.getContext('2d');
+  const W=480, H=270; let t=0;
+  const steps = [
+    '📞 Incoming call detected...',
+    '🧠 AI analysing caller intent...',
+    '🗣 "Hello! How can I help you today?"',
+    '👂 Caller: "I need to book appointment"',
+    '🤖 AI: "Sure! What date works for you?"',
+    '📅 Appointment booked: March 10, 3PM',
+    '✅ Confirmation SMS sent automatically',
+  ];
+
+  demoTimers['call'] = setInterval(()=>{
+    ctx.clearRect(0,0,W,H);
+    drawBg(ctx, W, H, '#030d1a', '#0a1424');
+    drawGrid(ctx, W, H, 'rgba(0,212,255,0.03)');
+
+    // Phone pulse rings
+    const pulse = (Math.sin(t*0.05)+1)/2;
+    for(let r=0;r<3;r++){
+      ctx.beginPath();
+      ctx.arc(W/2, 90, 30+(r+1)*18+pulse*8, 0, Math.PI*2);
+      ctx.strokeStyle=`rgba(0,212,255,${0.15-r*0.04})`;
+      ctx.lineWidth=1.5; ctx.stroke();
+    }
+
+    // Phone icon circle
+    const g = ctx.createRadialGradient(W/2,90,0,W/2,90,28);
+    g.addColorStop(0,'#00d4ff'); g.addColorStop(1,'#7c3aed');
+    ctx.beginPath(); ctx.arc(W/2,90,28,0,Math.PI*2);
+    ctx.fillStyle=g; ctx.fill();
+    ctx.fillStyle='#fff'; ctx.font='bold 20px sans-serif'; ctx.textAlign='center';
+    ctx.fillText('📞', W/2, 97);
+
+    // Waveform
+    ctx.strokeStyle='rgba(0,212,255,0.5)'; ctx.lineWidth=2;
+    ctx.beginPath(); ctx.moveTo(W/2-80, 130);
+    for(let x=-80;x<=80;x++){
+      const active = Math.floor(t/80) % 2 === 0;
+      const amp = active ? Math.sin(x*0.2+t*0.15)*12*(1-Math.abs(x)/80) : 0;
+      ctx.lineTo(W/2+x, 130+amp);
+    }
+    ctx.stroke();
+
+    // Current step
+    const stepIdx = Math.floor(t/70) % steps.length;
+    roundRect(ctx, 40, 155, W-80, 30, 8, 'rgba(0,212,255,0.08)', 'rgba(0,212,255,0.2)');
+    ctx.fillStyle='#00d4ff'; ctx.font='11px sans-serif'; ctx.textAlign='center';
+    ctx.fillText(steps[stepIdx], W/2, 175);
+
+    // Duration timer
+    const secs = Math.floor(t/25);
+    const mm = String(Math.floor(secs/60)).padStart(2,'0');
+    const ss = String(secs%60).padStart(2,'0');
+    ctx.fillStyle='rgba(255,255,255,0.3)'; ctx.font='bold 12px monospace'; ctx.textAlign='center';
+    ctx.fillText(`${mm}:${ss}`, W/2, 220);
+
+    // Bottom stats
+    roundRect(ctx, 0, H-34, W, 34, 0, 'rgba(0,212,255,0.06)', null);
+    ['94% booking rate','Avg 2.3min calls','Zero missed calls'].forEach((s,i)=>{
+      ctx.fillStyle='#00d4ff'; ctx.font='bold 9px sans-serif'; ctx.textAlign='center';
+      ctx.fillText(s, 80+i*160, H-14);
+    });
+    t++;
+  }, 40);
+}
+
+// ── DEMO 3: Instagram DM Bot ──
+function demoInsta(canvas) {
+  const ctx = canvas.getContext('2d');
+  const W=480, H=270; let t=0;
+  const comments = [
+    {usr:'@priya_s', txt:'Price? 👀', col:'#f472b6'},
+    {usr:'@rahul.k', txt:'How to order?', col:'#c084fc'},
+    {usr:'@neha_20', txt:'Available in blue?', col:'#f472b6'},
+    {usr:'@amit_r',  txt:'Looks amazing! 🔥', col:'#c084fc'},
+  ];
+  const dmReply = '🎁 Hi! Price is ₹999. Order here 👉 link.bio/nexaflow — use INSTA10 for 10% OFF! 💜';
+
+  demoTimers['insta'] = setInterval(()=>{
+    ctx.clearRect(0,0,W,H);
+
+    // Gradient bg
+    const g = ctx.createLinearGradient(0,0,W,H);
+    g.addColorStop(0,'#1a0030'); g.addColorStop(1,'#0d1020');
+    ctx.fillStyle=g; ctx.fillRect(0,0,W,H);
+    drawGrid(ctx, W, H, 'rgba(244,114,182,0.03)');
+
+    // Header
+    roundRect(ctx, 0,0,W,40,0,'rgba(244,114,182,0.1)',null);
+    ctx.fillStyle='#f472b6'; ctx.font='bold 12px sans-serif'; ctx.textAlign='left';
+    ctx.fillText('📸 Instagram AI Bot — Live Feed', 14, 26);
+    ctx.fillStyle='rgba(255,255,255,0.4)'; ctx.font='10px sans-serif'; ctx.textAlign='right';
+    ctx.fillText(`${Math.floor(t/2)+1} events processed`, W-14, 26);
+
+    // Left: comment feed
+    const activeIdx = Math.floor(t/55) % comments.length;
+    comments.forEach((c,i)=>{
+      const active = i === activeIdx;
+      const y = 56 + i*44;
+      roundRect(ctx, 10, y, 200, 34, 7,
+        active ? 'rgba(244,114,182,0.15)' : 'rgba(255,255,255,0.03)',
+        active ? 'rgba(244,114,182,0.5)' : 'rgba(255,255,255,0.08)');
+      ctx.fillStyle=c.col; ctx.font='bold 9px sans-serif'; ctx.textAlign='left';
+      ctx.fillText(c.usr, 20, y+13);
+      ctx.fillStyle='#fff'; ctx.font='10px sans-serif';
+      ctx.fillText(c.txt, 20, y+26);
+      if(active){
+        ctx.fillStyle='#f472b6'; ctx.font='bold 9px sans-serif'; ctx.textAlign='right';
+        ctx.fillText('→ AUTO DM ✓', 205, y+20);
+      }
+    });
+
+    // Arrow
+    ctx.fillStyle='rgba(244,114,182,0.6)'; ctx.font='bold 18px sans-serif'; ctx.textAlign='center';
+    ctx.fillText('→', 233, H/2);
+
+    // Right: DM preview
+    roundRect(ctx, 248, 50, W-260, H-100, 10,
+      'rgba(244,114,182,0.07)', 'rgba(244,114,182,0.25)');
+    ctx.fillStyle='rgba(244,114,182,0.8)'; ctx.font='bold 9px sans-serif'; ctx.textAlign='left';
+    ctx.fillText('AUTO DM SENT:', 258, 68);
+    ctx.fillStyle='rgba(255,255,255,0.85)'; ctx.font='10px sans-serif';
+    // Word-wrap DM text
+    const words = dmReply.split(' ');
+    let line='', ly=86;
+    words.forEach(w=>{
+      const test = line+w+' ';
+      if(ctx.measureText(test).width > 195 && line) { ctx.fillText(line, 258, ly); line=w+' '; ly+=15; }
+      else line=test;
+    });
+    if(line) ctx.fillText(line, 258, ly);
+
+    // Pulse on active DM
+    const pulse2=(Math.sin(t*0.08)+1)/2;
+    ctx.strokeStyle=`rgba(244,114,182,${0.3+pulse2*0.3})`; ctx.lineWidth=1.5;
+    roundRect(ctx, 248, 50, W-260, H-100, 10, null, `rgba(244,114,182,${0.2+pulse2*0.3})`);
+
+    // Bottom stats
+    roundRect(ctx, 0,H-34,W,34,0,'rgba(244,114,182,0.07)',null);
+    ['847 auto DMs today','92% open rate','₹24,300 revenue'].forEach((s,i)=>{
+      ctx.fillStyle='#f472b6'; ctx.font='bold 9px sans-serif'; ctx.textAlign='center';
+      ctx.fillText(s, 80+i*160, H-14);
+    });
+    t++;
+  }, 40);
+}
+
+// ── DEMO 4: Meta Ads Manager ──
+function demoAds(canvas) {
+  const ctx = canvas.getContext('2d');
+  const W=480, H=270; let t=0;
+  const campaigns = [
+    {name:'Summer Sale Ad',  spend:2400,  roas:4.8, status:'🟢 Active'},
+    {name:'Product Launch',  spend:3100,  roas:3.9, status:'🟢 Active'},
+    {name:'Retargeting',     spend:900,   roas:6.2, status:'🟢 Active'},
+    {name:'Cold Audience',   spend:1800,  roas:2.1, status:'🟡 Testing'},
+  ];
+
+  demoTimers['ads'] = setInterval(()=>{
+    ctx.clearRect(0,0,W,H);
+    drawBg(ctx, W, H, '#001230', '#0d1424');
+    drawGrid(ctx, W, H, 'rgba(24,119,242,0.04)');
+
+    // Header
+    roundRect(ctx, 0,0,W,40,0,'rgba(24,119,242,0.15)',null);
+    ctx.fillStyle='#60a5fa'; ctx.font='bold 12px sans-serif'; ctx.textAlign='left';
+    ctx.fillText('📘 Meta Ads AI Manager — Live Dashboard', 14, 26);
+    const d = new Date(); ctx.fillStyle='rgba(255,255,255,0.35)';
+    ctx.font='9px sans-serif'; ctx.textAlign='right';
+    ctx.fillText('Auto-optimising every 15min', W-14, 26);
+
+    // Campaign rows
+    campaigns.forEach((c,i)=>{
+      const y = 48 + i*46;
+      const highlight = Math.floor(t/60)%campaigns.length === i;
+      roundRect(ctx, 10, y, W-20, 38, 7,
+        highlight?'rgba(24,119,242,0.12)':'rgba(255,255,255,0.03)',
+        highlight?'rgba(24,119,242,0.4)':'rgba(255,255,255,0.07)');
+
+      ctx.fillStyle='#fff'; ctx.font='bold 10px sans-serif'; ctx.textAlign='left';
+      ctx.fillText(c.name, 20, y+14);
+      ctx.fillStyle='rgba(255,255,255,0.45)'; ctx.font='9px sans-serif';
+      ctx.fillText(`Spend: ₹${c.spend.toLocaleString()}`, 20, y+28);
+
+      // ROAS bar
+      const barW = 100, barX = W/2-10;
+      roundRect(ctx, barX, y+10, barW, 8, 4, 'rgba(255,255,255,0.06)', null);
+      const fill = Math.min(c.roas/7, 1);
+      const roasG = ctx.createLinearGradient(barX,0,barX+barW,0);
+      roasG.addColorStop(0,'#1877f2'); roasG.addColorStop(1,'#00d4ff');
+      roundRect(ctx, barX, y+10, barW*fill, 8, 4, roasG, null);
+      ctx.fillStyle='#60a5fa'; ctx.font='bold 9px sans-serif'; ctx.textAlign='left';
+      ctx.fillText(`ROAS ${c.roas}×`, barX+barW+6, y+18);
+
+      ctx.fillStyle= c.status.includes('Active')?'#34d399':'#fbbf24';
+      ctx.font='9px sans-serif'; ctx.textAlign='right';
+      ctx.fillText(c.status, W-18, y+18);
+    });
+
+    // Total ROAS ticker
+    const totalRoas = (4.8+3.9+6.2+2.1+(Math.sin(t*0.02)*0.1)).toFixed(2);
+    roundRect(ctx, 0,H-34,W,34,0,'rgba(24,119,242,0.1)',null);
+    ctx.fillStyle='#60a5fa'; ctx.font='bold 11px sans-serif'; ctx.textAlign='center';
+    ctx.fillText(`Total Spend: ₹8,200  •  Avg ROAS: ${totalRoas}×  •  AI Optimising 24/7`, W/2, H-14);
+    t++;
+  }, 40);
+}
+
+// ── DEMO 5: Lead Generation ──
+function demoLead(canvas) {
+  const ctx = canvas.getContext('2d');
+  const W=480, H=270; let t=0;
+  const leads = [
+    {name:'Rahul Sharma',   biz:'Tech Startup',    score:92, status:'Contacted'},
+    {name:'Priya Mehta',    biz:'E-commerce',       score:87, status:'Replied'},
+    {name:'Amit Gupta',     biz:'Real Estate',      score:95, status:'Meeting'},
+    {name:'Neha Singh',     biz:'Healthcare',       score:78, status:'Contacted'},
+    {name:'Vikram Patel',   biz:'Education',        score:83, status:'Follow-up'},
+  ];
+
+  demoTimers['lead'] = setInterval(()=>{
+    ctx.clearRect(0,0,W,H);
+    drawBg(ctx, W, H, '#0a0a1f', '#0d1424');
+    drawGrid(ctx, W, H, 'rgba(124,58,237,0.04)');
+
+    // Header
+    roundRect(ctx, 0,0,W,40,0,'rgba(124,58,237,0.15)',null);
+    ctx.fillStyle='#a78bfa'; ctx.font='bold 12px sans-serif'; ctx.textAlign='left';
+    ctx.fillText('🎯 AI Lead Generation — Live Feed', 14, 26);
+    const perDay = 500+Math.floor(Math.sin(t*0.01)*20);
+    ctx.fillStyle='#34d399'; ctx.textAlign='right'; ctx.font='bold 10px sans-serif';
+    ctx.fillText(`${perDay} leads today ↑`, W-14, 26);
+
+    // Lead rows
+    leads.forEach((l,i)=>{
+      const freshIdx = Math.floor(t/45) % leads.length;
+      const isFresh = i === freshIdx;
+      const y = 48+i*42;
+      roundRect(ctx, 10, y, W-20, 34, 7,
+        isFresh?'rgba(124,58,237,0.2)':'rgba(255,255,255,0.03)',
+        isFresh?'rgba(124,58,237,0.5)':'rgba(255,255,255,0.07)');
+
+      ctx.fillStyle='#fff'; ctx.font='bold 10px sans-serif'; ctx.textAlign='left';
+      ctx.fillText(l.name, 20, y+13);
+      ctx.fillStyle='rgba(255,255,255,0.4)'; ctx.font='9px sans-serif';
+      ctx.fillText(l.biz, 20, y+26);
+
+      // Score pill
+      const sc = l.score;
+      const scCol = sc>90?'#34d399':sc>80?'#00d4ff':'#fbbf24';
+      roundRect(ctx, W/2-30, y+8, 60, 18, 9, `${scCol}22`, scCol);
+      ctx.fillStyle=scCol; ctx.font='bold 9px sans-serif'; ctx.textAlign='center';
+      ctx.fillText(`Score ${sc}`, W/2, y+20);
+
+      // Status
+      const stCol = {Contacted:'#a78bfa',Replied:'#34d399',Meeting:'#00d4ff','Follow-up':'#fbbf24'}[l.status]||'#a78bfa';
+      ctx.fillStyle=stCol; ctx.font='bold 9px sans-serif'; ctx.textAlign='right';
+      ctx.fillText(l.status, W-18, y+20);
+
+      // New badge
+      if(isFresh){
+        roundRect(ctx, W-65, y+3, 50, 14, 7, '#7c3aed', null);
+        ctx.fillStyle='#fff'; ctx.font='bold 8px sans-serif'; ctx.textAlign='center';
+        ctx.fillText('✦ NEW', W-40, y+13);
+      }
+    });
+
+    // Bottom bar
+    roundRect(ctx, 0,H-34,W,34,0,'rgba(124,58,237,0.08)',null);
+    ['500+ leads/day','Auto outreach','89% open rate'].forEach((s,i)=>{
+      ctx.fillStyle='#a78bfa'; ctx.font='bold 9px sans-serif'; ctx.textAlign='center';
+      ctx.fillText(s, 80+i*160, H-14);
+    });
+    t++;
+  }, 40);
+}
+
+// ── DEMO 6: Full Automation Flow ──
+function demoAuto(canvas) {
+  const ctx = canvas.getContext('2d');
+  const W=480, H=270; let t=0;
+  const nodes = [
+    {label:'Lead Captured',  icon:'🎯', x:60,  y:80,  col:'#00d4ff'},
+    {label:'AI Qualifies',   icon:'🧠', x:180, y:80,  col:'#a78bfa'},
+    {label:'Auto Follow-up', icon:'📧', x:300, y:80,  col:'#fb923c'},
+    {label:'Payment Sent',   icon:'💳', x:420, y:80,  col:'#34d399'},
+    {label:'WhatsApp Notif', icon:'💬', x:300, y:190, col:'#25D366'},
+    {label:'CRM Updated',    icon:'📊', x:180, y:190, col:'#60a5fa'},
+    {label:'Task Created',   icon:'✅', x:60,  y:190, col:'#fbbf24'},
+  ];
+  const edges = [[0,1],[1,2],[2,3],[3,4],[4,5],[5,6]];
+
+  demoTimers['auto'] = setInterval(()=>{
+    ctx.clearRect(0,0,W,H);
+    drawBg(ctx, W, H, '#030712', '#0a0f1e');
+    drawGrid(ctx, W, H, 'rgba(255,255,255,0.02)');
+
+    // Header
+    roundRect(ctx,0,0,W,36,0,'rgba(255,255,255,0.04)',null);
+    ctx.fillStyle='rgba(255,255,255,0.7)'; ctx.font='bold 11px sans-serif'; ctx.textAlign='left';
+    ctx.fillText('⚡ NexaFlow AI — Full Automation Pipeline', 14, 23);
+    ctx.fillStyle='#34d399'; ctx.textAlign='right'; ctx.font='9px sans-serif';
+    ctx.fillText('All systems running', W-14, 23);
+
+    // Animated active node
+    const activeNode = Math.floor(t/40) % nodes.length;
+    const progress = (t % 40)/40;
+
+    // Draw edges with animated packet
+    edges.forEach(([a,b],i)=>{
+      const na=nodes[a], nb=nodes[b];
+      ctx.strokeStyle='rgba(255,255,255,0.1)'; ctx.lineWidth=1.5;
+      ctx.setLineDash([4,4]); ctx.lineDashOffset=-t*0.5;
+      ctx.beginPath(); ctx.moveTo(na.x,na.y+28); ctx.lineTo(nb.x,nb.y+28); ctx.stroke();
+      ctx.setLineDash([]);
+      // Packet dot
+      if(i===activeNode){
+        const px=na.x+(nb.x-na.x)*progress;
+        const py=(na.y+nb.y)/2+28;
+        ctx.beginPath(); ctx.arc(px,py,5,0,Math.PI*2);
+        ctx.fillStyle=na.col; ctx.fill();
+        ctx.strokeStyle='rgba(255,255,255,0.6)'; ctx.lineWidth=1; ctx.stroke();
+      }
+    });
+
+    // Draw nodes
+    nodes.forEach((n,i)=>{
+      const isActive = i===activeNode;
+      const pulse=(Math.sin(t*0.08+i)+1)/2;
+      if(isActive){
+        ctx.beginPath(); ctx.arc(n.x,n.y+28,24+pulse*4,0,Math.PI*2);
+        ctx.fillStyle=`${n.col}22`; ctx.fill();
+      }
+      roundRect(ctx, n.x-28, n.y, 56, 56, 12,
+        isActive?`${n.col}33`:'rgba(255,255,255,0.04)',
+        isActive?n.col:'rgba(255,255,255,0.1)');
+      ctx.font='16px sans-serif'; ctx.textAlign='center';
+      ctx.fillText(n.icon, n.x, n.y+24);
+      ctx.fillStyle=isActive?n.col:'rgba(255,255,255,0.5)';
+      ctx.font=`${isActive?'bold ':' '}8px sans-serif`;
+      ctx.fillText(n.label, n.x, n.y+66);
+    });
+
+    // Counter
+    const done = Math.floor(t/40);
+    roundRect(ctx,0,H-34,W,34,0,'rgba(0,0,0,0.3)',null);
+    ctx.fillStyle='rgba(255,255,255,0.5)'; ctx.font='bold 9px sans-serif'; ctx.textAlign='center';
+    ctx.fillText(`${done} automations completed  •  0 manual actions  •  Running 24/7`, W/2, H-14);
+    t++;
+  }, 40);
+}
+
+// Auto-init thumbnail previews (static first frame)
+window.addEventListener('load', ()=>{
+  const previews = {wa:'demoWA',call:'demoCall',insta:'demoInsta',ads:'demoAds',lead:'demoLead',auto:'demoAuto'};
+  // Draw static first frame for each
+  Object.keys(previews).forEach(id=>{
+    const canvas = document.getElementById('demo-'+id);
+    if(!canvas) return;
+    const ctx = canvas.getContext('2d');
+    const W=480, H=270;
+    const bgs = {wa:['#0a1f0a','#0d1a0d'],call:['#030d1a','#0a1424'],insta:['#1a0030','#0d1020'],ads:['#001230','#0d1424'],lead:['#0a0a1f','#0d1424'],auto:['#030712','#0a0f1e']};
+    const bg = bgs[id]||['#0d1424','#030712'];
+    drawBg(ctx, W, H, bg[0], bg[1]);
+    drawGrid(ctx, W, H, 'rgba(0,212,255,0.03)');
+    ctx.fillStyle='rgba(255,255,255,0.15)'; ctx.font='bold 14px sans-serif'; ctx.textAlign='center';
+    ctx.fillText('▶ Click to Play Demo', W/2, H/2);
+  });
+});
+
+
+
+// ── VISITOR ANALYTICS ──
+(function(){
+  // Session tracking
+  const sess = {
+    start: Date.now(),
+    pages: 1,
+    clicks: 0,
+    waClicks: 0,
+    payClicks: 0,
+    device: /Mobi|Android/i.test(navigator.userAgent) ? '📱 Mobile' : '🖥 Desktop',
+    country: Intl.DateTimeFormat().resolvedOptions().timeZone || 'Unknown',
+    ref: document.referrer ? new URL(document.referrer).hostname : 'Direct',
+    sectionsViewed: new Set(),
+  };
+
+  // Track clicks
+  document.addEventListener('click', e=>{
+    sess.clicks++;
+    const a = e.target.closest('a');
+    if(a){
+      if(a.href.includes('wa.me')) sess.waClicks++;
+      if(a.href.includes('paypal')||a.href.includes('upi://')) sess.payClicks++;
+    }
+  });
+
+  // Track sections viewed
+  const sectionObserver = new IntersectionObserver(entries=>{
+    entries.forEach(e=>{ if(e.isIntersecting) sess.sectionsViewed.add(e.target.id||e.target.className.split(' ')[0]); });
+  },{threshold:0.3});
+  document.querySelectorAll('section').forEach(s=>sectionObserver.observe(s));
+
+  // Update badge
+  function updateBadge(){
+    const el = document.getElementById('analyticsContent');
+    if(!el) return;
+    const mins = Math.floor((Date.now()-sess.start)/60000);
+    const secs = Math.floor(((Date.now()-sess.start)%60000)/1000);
+    el.innerHTML = `
+      <div>⏱ Time on site: <b style="color:#fff">${mins}m ${secs}s</b></div>
+      <div>${sess.device}</div>
+      <div>🌍 TZ: <b style="color:#fff">${sess.country}</b></div>
+      <div>🔗 Source: <b style="color:#fff">${sess.ref}</b></div>
+      <div>👆 Clicks: <b style="color:#fff">${sess.clicks}</b></div>
+      <div>💬 WA Clicks: <b style="color:#00d4ff">${sess.waClicks}</b></div>
+      <div>💳 Pay Clicks: <b style="color:#34d399">${sess.payClicks}</b></div>
+      <div>📄 Sections: <b style="color:#fff">${sess.sectionsViewed.size}</b></div>
+    `;
+  }
+  setInterval(updateBadge, 1000);
+
+  // Alt+A to toggle badge
+  document.addEventListener('keydown', e=>{
+    if(e.altKey && e.key==='a'){
+      const badge = document.getElementById('analyticsBadge');
+      badge.style.display = badge.style.display==='none' ? 'block' : 'none';
+      updateBadge();
+    }
+  });
+
+  // Send session summary to Formspree when user leaves (after 10s minimum)
+  window.addEventListener('beforeunload', ()=>{
+    if(Date.now()-sess.start < 10000) return;
+    const mins = Math.floor((Date.now()-sess.start)/60000);
+    const data = new FormData();
+    data.append('_subject', `📊 Site Visitor — ${sess.device} — ${mins}m session`);
+    data.append('device',   sess.device);
+    data.append('timezone', sess.country);
+    data.append('source',   sess.ref);
+    data.append('time_spent', `${mins}m`);
+    data.append('wa_clicks',  sess.waClicks);
+    data.append('pay_clicks', sess.payClicks);
+    data.append('total_clicks', sess.clicks);
+    data.append('sections_viewed', sess.sectionsViewed.size);
+    // Fire and forget — sendBeacon for reliability
+    if(navigator.sendBeacon){
+      const blob = new Blob([new URLSearchParams(data).toString()],{type:'application/x-www-form-urlencoded'});
+      navigator.sendBeacon('https://formspree.io/f/xyknyzlj', blob);
+    }
+  });
+})();
 
 </script>
 
